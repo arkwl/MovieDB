@@ -3,15 +3,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>MovieDB</title>
-	<link rel="stylesheet" href="style.css">
-	
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/web_space.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 	<div id="banner">
 		<div class="left">MovieMoose</div>
 		<div class="right" style="display: flex;">
 			<div style="font-size:30px;">User Level:</div>
-			<select>
+			<select id="rights" onchange="set_rights()">
 				<option>Manager</option>
 				<option>Customer Representative</option>
 				<option>Customer</option>
