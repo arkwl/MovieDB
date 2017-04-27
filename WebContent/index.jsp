@@ -5,6 +5,7 @@
 	<title>MovieDB</title>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/web_space.js"></script>
+	<script src="js/generate_io.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
@@ -19,13 +20,13 @@
 			</select>
 		</div>
 	</div>
-	<div style="height:800px;">
+	<div style="width:100%; position:relative;">
 		<div id="query_options">
 			<div class="query_header">Manager Level Transactions</div>
 			<ul style="padding-right:40px;">
 				<li class="list_item">
 					<div style="width:80%;">Add, Edit and Delete movies</div>
-					<button class="query_button">-></button>
+					<button class="query_button" onClick="query_1_1()">-></button>
 				</li>
 				<li class="list_item">
 					<div style="width:80%;">Add, Edit and Delete information for an employee</div>
@@ -116,6 +117,12 @@
 			</ul> 
 		</div>
 		<div id="query_io">
+			<div id="query_i">
+				<b>First Name:</b><%= request.getParameter("first_name")%><br/>
+				<b>Last  Name:</b><%= request.getParameter("last_name")%>
+			</div>
+			<div id="query_o">
+			</div>
 		</div>
 	</div>
 	<%@ include file="/fragment/footer.html"%>
