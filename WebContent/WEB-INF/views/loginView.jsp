@@ -5,39 +5,37 @@
  <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/movie.css">
  </head>
  <body>
  
- 
-    <h3>Login Page</h3>
+ <div class="center">
+    <h3>Welcome to MovieMoose</h3>
  
     <p style="color: red;">${errorString}</p>
  
     <form method="POST" action="doLogin">
        <table border="0">
           <tr>
-             <td>User Name</td>
-             <td><input type="text" name="userName" value= "${user.userName}" /> </td>
+             <td>First Name:</td>
+             <td><input type="text" name="firstName" value= "${user.firstName}" /> </td>
           </tr>
           <tr>
-             <td>Password</td>
-             <td><input type="text" name="password" value= "${user.password}" /> </td>
+             <td>Last Name:</td>
+             <td><input type="text" name="lastName" value= "${user.lastName}" /> </td>
           </tr>
           <tr>
-             <td>Remember me</td>
-             <td><input type="checkbox" name="rememberMe" value= "Y" /> </td>
+             <td>ID:</td>
+             <td><input type="text" name="id" value= "${user.id}" /> </td>
           </tr>
           <tr>
              <td colspan ="2">
                 <input type="submit" value= "Submit" />
-                <a href="${pageContext.request.contextPath}/">Cancel</a>
+                <a href="${pageContext.request.contextPath}/" style="color:white;">Cancel</a>
              </td>
           </tr>
        </table>
     </form>
- 
-    <p style="color:blue;">User Name: tom, password: tom001 or jerry/jerry001</p>
- 
- 
+    </div>
  </body>
 </html>
