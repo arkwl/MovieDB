@@ -6,54 +6,94 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.DriverManager;
+import java.sql.Statement;
  
 import org.o7planning.simplewebapp.beans.Product;
 import org.o7planning.simplewebapp.beans.UserAccount;
  
 public class DBUtils {
  
-  public static UserAccount findUser(Connection conn, String userName, String password) throws SQLException {
+  public static UserAccount findUser(Connection conn, String i_firstName, String i_lastName, String i_id) throws SQLException {
  
-      String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a "
-              + " where a.User_Name = ? and a.password= ?";
+      Statement stmt = conn.createStatement();
+      ResultSet rs_emp = stmt.executeQuery("SELECT * FROM Employee E, Person P WHERE E.SSN='" + i_id
+    		  + "' AND P.firstName = '" + i_firstName + "' AND P.lastName = '" + i_lastName + "'");
+      
+      Statement stmt_2 = conn.createStatement();
+      ResultSet rs_cus = stmt_2.executeQuery("SELECT * FROM Customer C, Person P WHERE C.ID='" + i_id
+    		  + "' AND P.firstName = '" + i_firstName + "' AND P.lastName = '" +i_lastName+ "'");
  
-      PreparedStatement pstm = conn.prepareStatement(sql);
-      pstm.setString(1, userName);
-      pstm.setString(2, password);
-      ResultSet rs = pstm.executeQuery();
- 
-      if (rs.next()) {
-          String gender = rs.getString("Gender");
+      if (rs_emp.next()) {
+    	  System.out.println(rs_emp.toString());
+          String firstName = rs_emp.getString("firstname");
+          String lastName = rs_emp.getString("lastname");
+          String id = rs_emp.getString("ssn");
           UserAccount user = new UserAccount();
-          user.setUserName(userName);
-          user.setPassword(password);
-          user.setGender(gender);
+          user.setFirstName(firstName);
+          user.setLastName(lastName);
+          user.setId(id);
+          
+          if (id.equals("789-12-3456")){
+        	  user.setUserLevel(UserAccount.MANAGER);
+          } else {
+        	  user.setUserLevel(UserAccount.EMPLOYEE);
+          }
+          return user;
+      }
+      
+      if (rs_cus.next()) {
+    	  System.out.println(rs_cus.toString());
+          String firstName = rs_cus.getString("firstname");
+          String lastName = rs_cus.getString("lastname");
+          String id = rs_cus.getString("id");
+          UserAccount user = new UserAccount();
+          user.setFirstName(firstName);
+          user.setLastName(lastName);
+          user.setId(id);
+          user.setUserLevel(UserAccount.CUSTOMER);
           return user;
       }
       return null;
   }
  
   public static UserAccount findUser(Connection conn, String userName) throws SQLException {
- 
-      String sql = "Select a.User_Name, a.Password, a.Gender from User_Account a " + " where a.User_Name = ? ";
- 
-      PreparedStatement pstm = conn.prepareStatement(sql);
-      pstm.setString(1, userName);
- 
-      ResultSet rs = pstm.executeQuery();
+
+	  //testing to make sure it exists
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT * FROM PERSON");
  
       if (rs.next()) {
-          String password = rs.getString("Password");
-          String gender = rs.getString("Gender");
+    	  System.out.println(rs.toString());
+          String firstName = rs.getString("firstname");
+          String lastName = rs.getString("lastname");
+          String id = rs.getString("id");
           UserAccount user = new UserAccount();
-          user.setUserName(userName);
-          user.setPassword(password);
-          user.setGender(gender);
+          user.setFirstName(firstName);
+          user.setLastName(lastName);
+          user.setId("id");
           return user;
       }
       return null;
   }
  
+  public static void queryOneEmp(Connection conn, String orderID, String dateTime, String returnDate, 
+		  String accountId, String custRepId, String movieId) throws SQLException {
+
+	  //testing to make sure it exists
+      Statement stmt = conn.createStatement();
+      String sql_1 = "INSERT INTO Orders (Id, DateTime, ReturnDate) VALUES (" + orderID
+    		  + ", '" + dateTime + "', '" + returnDate + "')";
+      stmt.executeUpdate(sql_1);
+      
+      Statement stmt_2 = conn.createStatement();
+      String sql_2 = "INSERT INTO Rental (AccountId, CustRepId, OrderId, MovieId) VALUES (" + accountId
+    		  + ", " + custRepId + ", " + orderID + ", " + movieId + ")";
+      stmt.executeUpdate(sql_2);
+      
+      //put some error handling to see if it has worked
+  }
+  
   public static List<Product> queryProduct(Connection conn) throws SQLException {
       String sql = "Select a.Code, a.Name, a.Price from Product a ";
  

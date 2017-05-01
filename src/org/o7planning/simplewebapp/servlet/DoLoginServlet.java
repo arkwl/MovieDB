@@ -28,29 +28,27 @@ public class DoLoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
  
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        String rememberMeStr = request.getParameter("rememberMe");
-        boolean remember= "Y".equals(rememberMeStr);
- 
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String id = request.getParameter("id");
          
         UserAccount user = null;
         boolean hasError = false;
         String errorString = null;
  
-        if (userName == null || password == null
-                 || userName.length() == 0 || password.length() == 0) {
+        if (firstName == null || lastName == null || id == null
+                 || firstName.length() == 0 || lastName.length() == 0 || id.length() == 0) {
             hasError = true;
-            errorString = "Required username and password!";
+            errorString = "Information invalid!";
         } else {
             Connection conn = MyUtils.getStoredConnection(request);
             try {
               
-                user = DBUtils.findUser(conn, userName, password);
+                user = DBUtils.findUser(conn, firstName, lastName, id);
                  
                 if (user == null) {
                     hasError = true;
-                    errorString = "User Name or password invalid";
+                    errorString = "Information invalid";
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -62,9 +60,9 @@ public class DoLoginServlet extends HttpServlet {
         // If error, forward to /WEB-INF/views/login.jsp
         if (hasError) {
             user = new UserAccount();
-            user.setUserName(userName);
-            user.setPassword(password);
-             
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setId(id);
         
             // Store information in request attribute, before forward.
             request.setAttribute("errorString", errorString);
@@ -85,18 +83,39 @@ public class DoLoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             MyUtils.storeLoginedUser(session, user);
              
-             // If user checked "Remember me".
-            if(remember)  {
-                MyUtils.storeUserCookie(response,user);
-            }
-    
-            // Else delete cookie.
-            else  {
-                MyUtils.deleteUserCookie(response);
-            }                       
+            if (user.getUserLevel().equals(UserAccount.CUSTOMER))
+        	{
+        		response.sendRedirect(request.getContextPath() + "/userInfo");
+        	}
+        	else if (user.getUserLevel().equals(UserAccount.EMPLOYEE))
+        	{
+        		response.sendRedirect(request.getContextPath() + "/userInfo");
+        	}
+        	else if (user.getUserLevel().equals(UserAccount.MANAGER))
+        	{
+        		response.sendRedirect(request.getContextPath() + "/userInfo");
+        	}
+        	else 
+        	{
+        		 user = new UserAccount();
+                 user.setFirstName(firstName);
+                 user.setLastName(lastName);
+                 user.setId(id);
+             
+                 // Store information in request attribute, before forward.
+                 request.setAttribute("errorString", "Malformed User");
+                 request.setAttribute("user", user);
       
+            
+                 // Forward to /WEB-INF/views/login.jsp
+                 RequestDispatcher dispatcher //
+                 = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+      
+                 dispatcher.forward(request, response);
+        	}
+            
             // Redirect to userInfo page.
-            response.sendRedirect(request.getContextPath() + "/userInfo");
+            // response.sendRedirect(request.getContextPath() + "/userInfo");
         }
     }
  
