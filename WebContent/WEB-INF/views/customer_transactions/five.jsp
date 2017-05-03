@@ -9,17 +9,17 @@
 </head>
 <body>
 	<div class="center">
-		<h3>Order history for a customer:</h3>
+		<h3>Movies available of a particular type:</h3>
 		<p style="color: red;">${errorString}</p>
 		<p style="color: white;">${successString}</p>
 		<form action="${pageContext.request.contextPath}/insert" method="POST">
 			<table border="0">
           <tr>
-             <td>Customer ID:</td>
-             <td><input type="text" name="customerID" /> </td>
+             <td>Type:</td>
+             <td><input type="text" name="type" /> </td>
           </tr>
           <tr style="display: none;">
-          	<td><input type="text" name="queryType" value="emp4" /> </td>
+          	<td><input type="text" name="queryType" value="cus5" /> </td>
           </tr>
           <tr>
              <td colspan ="2">
@@ -34,6 +34,3 @@
 	</div>
 </body>
 </html>
-
-
-

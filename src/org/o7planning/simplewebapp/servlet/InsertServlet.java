@@ -156,7 +156,7 @@ public class InsertServlet extends HttpServlet {
         } else if ("emp3".equals(button)) {
             //myClass.method3();
         } else if ("emp4".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/fourResult.jsp").forward(request, response);
         } else if ("man1a".equals(button)) {
             //myClass.method3();
         } else if ("man1b".equals(button)) {
@@ -190,9 +190,9 @@ public class InsertServlet extends HttpServlet {
         } else if ("cus4".equals(button)) {
             //myClass.method3();
         } else if ("cus5".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/fiveResult.jsp").forward(request, response);
         } else if ("cus6".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/sixResult.jsp").forward(request, response);
         } else if ("cus7".equals(button)) {
             //myClass.method3();
         } else if ("cus8".equals(button)) {

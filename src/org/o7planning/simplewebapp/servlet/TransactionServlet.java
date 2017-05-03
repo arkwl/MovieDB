@@ -74,11 +74,11 @@ public class TransactionServlet extends HttpServlet {
         } else if ("cus_4".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/four.jsp").forward(request, response);
         } else if ("cus_5".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/five.jsp").forward(request, response);
         } else if ("cus_6".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/six.jsp").forward(request, response);
         } else if ("cus_7".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/seven.jsp").forward(request, response);
         } else if ("cus_8".equals(button)) {
             //myClass.method3();
         } else {
