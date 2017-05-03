@@ -63,11 +63,96 @@ public class InsertServlet extends HttpServlet {
 			}
     		//request.getRequestDispatcher("/WEB-INF/views/employee_transactions/one.jsp").forward(request, response);
         } else if ("emp2a".equals(button)) {
+        	try {
+    			String ssn = request.getParameter("ssn");
+    			String firstName = request.getParameter("firstName");
+    			String lastName = request.getParameter("lastName");
+    			String address = request.getParameter("address");
+    			String zipcode = request.getParameter("zipcode");
+    			String telephone = request.getParameter("telephone");
+    			String cc = request.getParameter("cc");
+    			String rating = request.getParameter("rating");
+    			String email = request.getParameter("email");
+    			
+    			DBUtils.queryTwoAEmp(conn, ssn, firstName, lastName, address, zipcode, telephone, cc, rating, email);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/employee_transactions/twoA.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/employee_transactions/twoA.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
             //myClass.method2();
         } else if ("emp2b".equals(button)) {
+        	try {
+    			String ssn = request.getParameter("ssn");
+    			String firstName = request.getParameter("firstName");
+    			String lastName = request.getParameter("lastName");
+    			String address = request.getParameter("address");
+    			String zipcode = request.getParameter("zipcode");
+    			String telephone = request.getParameter("telephone");
+    			String cc = request.getParameter("cc");
+    			String rating = request.getParameter("rating");
+    			String email = request.getParameter("email");
+    			
+    			DBUtils.queryTwoBEmp(conn, ssn, firstName, lastName, address, zipcode, telephone, cc, rating, email);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/employee_transactions/twoB.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/employee_transactions/twoB.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
             //myClass.method3();
         } else if ("emp2c".equals(button)) {
             //myClass.method3();
+        	try {
+        		String ssn = request.getParameter("ssn");
+    			
+    			DBUtils.queryTwoCEmp(conn, ssn);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/employee_transactions/twoC.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/employee_transactions/twoC.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("emp3".equals(button)) {
             //myClass.method3();
         } else if ("emp4".equals(button)) {

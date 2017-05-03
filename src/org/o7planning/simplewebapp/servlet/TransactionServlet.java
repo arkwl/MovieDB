@@ -32,15 +32,15 @@ public class TransactionServlet extends HttpServlet {
     	if ("emp_1".equals(button)) {
     		request.getRequestDispatcher("/WEB-INF/views/employee_transactions/one.jsp").forward(request, response);
         } else if ("emp_2a".equals(button)) {
-            //myClass.method2();
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/twoA.jsp").forward(request, response);
         } else if ("emp_2b".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/twoB.jsp").forward(request, response);
         } else if ("emp_2c".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/twoC.jsp").forward(request, response);
         } else if ("emp_3".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/three.jsp").forward(request, response);
         } else if ("emp_4".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/four.jsp").forward(request, response);
         } else if ("man_1a".equals(button)) {
             //myClass.method3();
         } else if ("man_1b".equals(button)) {
@@ -66,13 +66,13 @@ public class TransactionServlet extends HttpServlet {
         } else if ("man_8".equals(button)) {
             //myClass.method3();
         } else if ("cus_1".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/one.jsp").forward(request, response);
         } else if ("cus_2".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/two.jsp").forward(request, response);
         } else if ("cus_3".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/three.jsp").forward(request, response);
         } else if ("cus_4".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/four.jsp").forward(request, response);
         } else if ("cus_5".equals(button)) {
             //myClass.method3();
         } else if ("cus_6".equals(button)) {
