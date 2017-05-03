@@ -110,6 +110,21 @@ public class DBUtils {
       //put some error handling to see if it has worked
   }
   
+  public static void queryTwoAMan(Connection conn, String ssn, String firstName, String lastName,
+		  String address, String zipcode, String telephone, String startDate, String customerID, String hourlyRate) throws SQLException {
+
+	  //testing to make sure it exists
+      Statement stmt = conn.createStatement();
+      String sql_1 = "INSERT INTO Person VALUES ('" + ssn + "', '" + lastName + "', '" + firstName + "', '" + address + "', '" + zipcode + "', '" + telephone + "')";
+      stmt.executeUpdate(sql_1);
+      
+      Statement stmt_2 = conn.createStatement();
+      String sql_2 = "INSERT INTO Employee VALUES ('" + customerID + "', '" + ssn  + "', '" + startDate + "', '" + hourlyRate + "')";
+      stmt_2.executeUpdate(sql_2);
+      
+      //put some error handling to see if it has worked
+  }
+  
   public static void queryTwoBEmp(Connection conn, String ssn, String firstName, String lastName,
 		  String address, String zipcode, String telephone, String cc, String rating, String email) throws SQLException {
 	  
@@ -160,10 +175,73 @@ public class DBUtils {
       //put some error handling to see if it has worked
   }
   
+  public static void queryTwoBMan(Connection conn, String ssn, String firstName, String lastName,
+		  String address, String zipcode, String telephone, String startDate, String customerID, String hourlyRate) throws SQLException {
+	  
+	  
+	  // STRICTLY UPDATE ONE AT A TIME
+	  String set_person = "SET ";
+	  String set_customer = "SET ";
+	  
+	  if(firstName.length() > 0){
+		  set_person += ("FirstName = '" + firstName+"' ");
+	  } 
+	  if (lastName.length() > 0) {
+		  set_person += ("LastName = '" + lastName+"' ");
+	  } 
+	  if (address.length() > 0) {
+		  set_person += ("Address = '" + address+"' ");
+	  } 
+	  if (zipcode.length() > 0) {
+		  set_person += ("ZipCode = '" + zipcode+"' ");
+	  } 
+	  if (telephone.length() > 0) {
+		  set_person += ("Telephone = '" + telephone+"' ");
+	  } 
+	  if (startDate.length() > 0) {
+		  set_customer += ("StartDate = '" + startDate+"' ");
+	  }
+	  if (customerID.length() > 0) {
+		  set_customer += ("ID = '" + customerID+"' ");
+	  } 
+	  if (hourlyRate.length() > 0) {
+		  set_customer += ("HourlyRate = '" + hourlyRate+"' ");
+	  } 
+	  
+	  if (!set_customer.equals("SET ")){
+		  Statement stmt = conn.createStatement();
+	      String sql_1 = "UPDATE Employee " + set_customer + " WHERE SSN = '"+ ssn +"'";
+	      stmt.executeUpdate(sql_1);
+	  } 
+	  else if (!set_person.equals("SET ")){
+		  Statement stmt = conn.createStatement();
+	      String sql_1 = "UPDATE Person " + set_person + " WHERE SSN = '"+ ssn + "'";
+	      stmt.executeUpdate(sql_1);
+	  } else {
+		  throw new SQLException();
+	  }
+	  
+      
+      //put some error handling to see if it has worked
+  }
+  
   public static void queryTwoCEmp(Connection conn, String ssn) throws SQLException {
       
       Statement stmt_2 = conn.createStatement();
       String sql_2 = "DELETE FROM Customer WHERE ID = '" + ssn + "'";
+      stmt_2.executeUpdate(sql_2);
+      
+      Statement stmt = conn.createStatement();
+      String sql_1 = "DELETE FROM Person WHERE SSN = '" + ssn + "'";
+      stmt.executeUpdate(sql_1);
+      
+      //put some error handling to see if it has worked
+  }
+  
+public static void queryTwoCMan(Connection conn, String ssn) throws SQLException {
+      
+      Statement stmt_2 = conn.createStatement();
+      String sql_2 = "DELETE FROM Employee WHERE SSN = '" + ssn + "'";
       stmt_2.executeUpdate(sql_2);
       
       Statement stmt = conn.createStatement();

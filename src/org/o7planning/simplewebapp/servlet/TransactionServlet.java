@@ -48,11 +48,11 @@ public class TransactionServlet extends HttpServlet {
         } else if ("man_1c".equals(button)) {
             //myClass.method3();
         } else if ("man_2a".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/twoA.jsp").forward(request, response);
         } else if ("man_2b".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/twoB.jsp").forward(request, response);
         } else if ("man_2c".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/twoC.jsp").forward(request, response);
         } else if ("man_3".equals(button)) {
             //myClass.method3();
         } else if ("man_4".equals(button)) {

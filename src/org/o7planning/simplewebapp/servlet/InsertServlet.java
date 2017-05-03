@@ -156,19 +156,102 @@ public class InsertServlet extends HttpServlet {
         } else if ("emp3".equals(button)) {
             //myClass.method3();
         } else if ("emp4".equals(button)) {
-        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/fourResult.jsp").forward(request, response);
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/four.jsp").forward(request, response);
         } else if ("man1a".equals(button)) {
-            //myClass.method3();
+        	
         } else if ("man1b".equals(button)) {
-            //myClass.method3();
+        	
         } else if ("man1c".equals(button)) {
             //myClass.method3();
         } else if ("man2a".equals(button)) {
-            //myClass.method3();
+        	try {
+    			String ssn = request.getParameter("ssn");
+    			String firstName = request.getParameter("firstName");
+    			String lastName = request.getParameter("lastName");
+    			String address = request.getParameter("address");
+    			String zipcode = request.getParameter("zipcode");
+    			String telephone = request.getParameter("telephone");
+    			String startDate = request.getParameter("startDate");
+    			String customerID = request.getParameter("customerID");
+    			String hourlyRate = request.getParameter("hourlyRate");
+    			
+    			DBUtils.queryTwoAMan(conn, ssn, firstName, lastName, address, zipcode, telephone, startDate, customerID, hourlyRate);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/twoA.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/twoA.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("man2b".equals(button)) {
-            //myClass.method3();
+        	try {
+    			String ssn = request.getParameter("ssn");
+    			String firstName = request.getParameter("firstName");
+    			String lastName = request.getParameter("lastName");
+    			String address = request.getParameter("address");
+    			String zipcode = request.getParameter("zipcode");
+    			String telephone = request.getParameter("telephone");
+    			String startDate = request.getParameter("startDate");
+    			String customerID = request.getParameter("customerID");
+    			String hourlyRate = request.getParameter("hourlyRate");
+    			
+    			DBUtils.queryTwoBMan(conn, ssn, firstName, lastName, address, zipcode, telephone, startDate, customerID, hourlyRate);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/twoB.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/twoB.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("man2c".equals(button)) {
-            //myClass.method3();
+        	//myClass.method3();
+        	try {
+        		String ssn = request.getParameter("ssn");
+    			
+    			DBUtils.queryTwoCMan(conn, ssn);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/twoC.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/twoC.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("man3".equals(button)) {
             //myClass.method3();
         } else if ("man4".equals(button)) {
