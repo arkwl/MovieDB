@@ -37,6 +37,12 @@
         	<p>Status ${statut} not found</p>
     	</c:otherwise>
 	</c:choose>
+	<form action="${pageContext.request.contextPath}/transaction" method="POST">
+		<button type="submit" name="button" value="home">Home</button>
+	</form>
+	<form action="${pageContext.request.contextPath}/transaction" method="POST">
+			<button type="submit" name="button" value="help">Help</button>
+		</form>
  </div>
  </body>
 </html>

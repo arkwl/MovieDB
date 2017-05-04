@@ -9,17 +9,17 @@
 </head>
 <body>
 	<div class="center">
-		<h3>Delete an employee:</h3>
+		<h3>Query rentals by movie type:</h3>
 		<p style="color: red;">${errorString}</p>
 		<p style="color: white;">${successString}</p>
 		<form action="${pageContext.request.contextPath}/insert" method="POST">
 			<table border="0">
           <tr>
-             <td>SSN:</td>
-             <td><input type="text" name="ssn" /> </td>
+             <td>Movie Type:</td>
+             <td><input type="text" name="type" /> </td>
           </tr>
           <tr style="display: none;">
-          	<td><input type="text" name="queryType" value="man2c" /> </td>
+          	<td><input type="text" name="queryType" value="man5b" /> </td>
           </tr>
           <tr>
              <td colspan ="2">

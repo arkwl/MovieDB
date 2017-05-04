@@ -14,8 +14,7 @@
 	<%@page import="java.sql.Connection"%>
 
 	<%
-	String userId = request.getParameter("userID");
-	String type = request.getParameter("type");
+	
 Connection c = null;
 Statement stmt = null;
 try {
@@ -27,34 +26,31 @@ try {
    System.out.println("Opened database successfully");
 %>
 <div class="center">
-	<h2 align="center">Movies of the Same Type</h2>
+	<h2 align="center">Determine which customer representative oversaw the most transactions</h2>
 	<table align="center" cellpadding="4" cellspacing="4">
 		<tr>
 
 		</tr>
 		<tr bgcolor="#008000">
-			<td><b>Movie ID</b></td>
-			<td><b>Movie Name</b></td>
-			<td><b>Movie Type</b></td>
+			<td><b>Customer ID</b></td>
 		</tr>
 
 <%   
    stmt = c.createStatement();
 
-   ResultSet rs = stmt.executeQuery( "SELECT * FROM Movie WHERE type = '"+ type +"'");
+
+
+   ResultSet rs = stmt.executeQuery( "SELECT C.CustRepId FROM CountTrans C WHERE C.NumTrans >= (SELECT MAX(D.NumTrans) FROM CountTrans D)");
    int count = 0;
    
    while ( rs.next() ) {
 	   count++;
-      String  id = rs.getString("id");
-      String  movieid = rs.getString("name");
-      String  custRepId = rs.getString("type");
+	   String  CustRepId = rs.getString("custRepId");
       %>
       
       	<tr bgcolor="#8FBC8F">
-			<td><%=rs.getString("id")%></td>
-			<td><%=rs.getString("name")%></td>
-			<td><%=rs.getString("type")%></td>
+
+			<td><%=rs.getString("custRepId")%></td>
 
 		</tr>
 

@@ -156,13 +156,89 @@ public class InsertServlet extends HttpServlet {
         } else if ("emp3".equals(button)) {
             //myClass.method3();
         } else if ("emp4".equals(button)) {
-        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/four.jsp").forward(request, response);
+        	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/fourResult.jsp").forward(request, response);
         } else if ("man1a".equals(button)) {
-        	
+        	try {
+    			String id = request.getParameter("id");
+    			String name = request.getParameter("name");
+    			String type = request.getParameter("type");
+    			String rating = request.getParameter("rating");
+    			String distrfee = request.getParameter("distrfee");
+    			String numcopies = request.getParameter("numcopies");
+    			
+    			DBUtils.queryOneAMan(conn, id, name, type, rating, distrfee, numcopies);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/oneA.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/oneA.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("man1b".equals(button)) {
-        	
+        	try {
+    			String id = request.getParameter("id");
+    			String name = request.getParameter("name");
+    			String type = request.getParameter("type");
+    			String rating = request.getParameter("rating");
+    			String distrfee = request.getParameter("distrfee");
+    			String numcopies = request.getParameter("numcopies");
+    			
+    			DBUtils.queryOneBMan(conn, id, name, type, rating, distrfee, numcopies);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/oneB.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/oneB.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("man1c".equals(button)) {
-            //myClass.method3();
+        	try {
+        		String id = request.getParameter("id");
+    			
+    			DBUtils.queryOneCMan(conn, id);
+    			request.setAttribute("successString", "Success!");
+    			RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/oneC.jsp");
+	 
+	            dispatcher.forward(request, response);
+    			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				errorString = e.getMessage();
+				
+				request.setAttribute("errorString", errorString);
+			       
+	            // Forward to /WEB-INF/views/login.jsp
+	            RequestDispatcher dispatcher //
+	            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/manager_transactions/oneC.jsp");
+	 
+	            dispatcher.forward(request, response);
+			}
         } else if ("man2a".equals(button)) {
         	try {
     			String ssn = request.getParameter("ssn");
@@ -252,15 +328,15 @@ public class InsertServlet extends HttpServlet {
 	 
 	            dispatcher.forward(request, response);
 			}
-        } else if ("man3".equals(button)) {
-            //myClass.method3();
-        } else if ("man4".equals(button)) {
-            //myClass.method3();
-        } else if ("man5".equals(button)) {
-            //myClass.method3();
+        } else if ("man5a".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveAResult.jsp").forward(request, response);
+        } else if ("man5b".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveBResult.jsp").forward(request, response);
+        } else if ("man5c".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveCResult.jsp").forward(request, response);
         } else if ("man6".equals(button)) {
             //myClass.method3();
-        } else if ("man7".equals(button)) {
+        } else if ("emp4".equals(button)) {
             //myClass.method3();
         } else if ("man8".equals(button)) {
             //myClass.method3();

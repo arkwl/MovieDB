@@ -9,17 +9,37 @@
 </head>
 <body>
 	<div class="center">
-		<h3>Delete an employee:</h3>
+		<h3>Add a movie:</h3>
 		<p style="color: red;">${errorString}</p>
 		<p style="color: white;">${successString}</p>
 		<form action="${pageContext.request.contextPath}/insert" method="POST">
 			<table border="0">
           <tr>
-             <td>SSN:</td>
-             <td><input type="text" name="ssn" /> </td>
+             <td>Movie ID:</td>
+             <td><input type="text" name="id" /> </td>
+          </tr>
+          <tr>
+             <td>Movie Name:</td>
+             <td><input type="text" name="name" /> </td>
+          </tr>
+          <tr>
+             <td>Movie Type:</td>
+             <td><input type="text" name="type"  /> </td>
+          </tr>
+          <tr>
+             <td>Rating:</td>
+             <td><input type="text" name="rating"  /> </td>
+          </tr>
+          <tr>
+             <td>Distribution Fee:</td>
+             <td><input type="text" name="distrfee"  /> </td>
+          </tr>
+          <tr>
+             <td>Number of Copies:</td>
+             <td><input type="text" name="numcopies"  /> </td>
           </tr>
           <tr style="display: none;">
-          	<td><input type="text" name="queryType" value="man2c" /> </td>
+          	<td><input type="text" name="queryType" value="man1a" /> </td>
           </tr>
           <tr>
              <td colspan ="2">
@@ -29,9 +49,9 @@
        </table>
 		</form>
 		<form action="${pageContext.request.contextPath}/transaction" method="POST">
-		<button type="submit" name="button" value="home">Home</button>
-	</form>
-	<form action="${pageContext.request.contextPath}/transaction" method="POST">
+			<button type="submit" name="button" value="home">Home</button>
+		</form>
+		<form action="${pageContext.request.contextPath}/transaction" method="POST">
 			<button type="submit" name="button" value="help">Help</button>
 		</form>
 	</div>

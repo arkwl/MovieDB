@@ -36,6 +36,9 @@
           </tr>
        </table>
     </form>
+    <form action="${pageContext.request.contextPath}/transaction" method="POST">
+			<button type="submit" name="button" value="help">Help</button>
+		</form>
     </div>
  </body>
 </html>

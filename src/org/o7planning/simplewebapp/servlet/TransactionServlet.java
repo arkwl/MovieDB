@@ -28,6 +28,17 @@ public class TransactionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	String button = request.getParameter("button");
+    	if ("home".equals(button)) {
+    		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+            
+            dispatcher.forward(request, response);
+        }
+    	
+    	if ("help".equals(button)) {
+    		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/help.jsp");
+            
+            dispatcher.forward(request, response);
+        }
     	
     	if ("emp_1".equals(button)) {
     		request.getRequestDispatcher("/WEB-INF/views/employee_transactions/one.jsp").forward(request, response);
@@ -42,11 +53,11 @@ public class TransactionServlet extends HttpServlet {
         } else if ("emp_4".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/employee_transactions/four.jsp").forward(request, response);
         } else if ("man_1a".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/oneA.jsp").forward(request, response);
         } else if ("man_1b".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/oneB.jsp").forward(request, response);
         } else if ("man_1c".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/oneC.jsp").forward(request, response);
         } else if ("man_2a".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/twoA.jsp").forward(request, response);
         } else if ("man_2b".equals(button)) {
@@ -54,15 +65,19 @@ public class TransactionServlet extends HttpServlet {
         } else if ("man_2c".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/twoC.jsp").forward(request, response);
         } else if ("man_3".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/three.jsp").forward(request, response);
         } else if ("man_4".equals(button)) {
-            //myClass.method3();
-        } else if ("man_5".equals(button)) {
-            //myClass.method3();
-        } else if ("man_6".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/four.jsp").forward(request, response);
+        } else if ("man_5a".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveA.jsp").forward(request, response);
+        } else if ("man_5b".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveB.jsp").forward(request, response);
+        } else if ("man_5c".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveC.jsp").forward(request, response);
+        }else if ("man_6".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/six.jsp").forward(request, response);
         } else if ("man_7".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/seven.jsp").forward(request, response);
         } else if ("man_8".equals(button)) {
             //myClass.method3();
         } else if ("cus_1".equals(button)) {

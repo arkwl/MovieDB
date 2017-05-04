@@ -60,9 +60,12 @@
           </tr>
        </table>
 		</form>
-		<form action="${pageContext.request.contextPath}/view" method="POST">
-		<button type="submit" name="button" value="emp_1">View Data</button>
+		<form action="${pageContext.request.contextPath}/transaction" method="POST">
+		<button type="submit" name="button" value="home">Home</button>
 	</form>
+	<form action="${pageContext.request.contextPath}/transaction" method="POST">
+			<button type="submit" name="button" value="help">Help</button>
+		</form>
 	</div>
 </body>
 </html>

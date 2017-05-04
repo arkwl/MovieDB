@@ -14,8 +14,8 @@
 	<%@page import="java.sql.Connection"%>
 
 	<%
-	String userId = request.getParameter("userID");
-	String type = request.getParameter("type");
+	//String userId = request.getParameter("customerID");
+	//String name = request.getParameter("name");
 Connection c = null;
 Statement stmt = null;
 try {
@@ -27,35 +27,42 @@ try {
    System.out.println("Opened database successfully");
 %>
 <div class="center">
-	<h2 align="center">Movies of the Same Type</h2>
+	<h2 align="center">A list of most active customers.</h2>
 	<table align="center" cellpadding="4" cellspacing="4">
 		<tr>
 
 		</tr>
 		<tr bgcolor="#008000">
-			<td><b>Movie ID</b></td>
-			<td><b>Movie Name</b></td>
-			<td><b>Movie Type</b></td>
+			<td><b>Customer ID</b></td>
+			<td><b>First Name</b></td>
+			<td><b>Last Name</b></td>
+			<td><b>Rating</b></td>
+			<td><b>Number of Orders</b></td>
 		</tr>
 
 <%   
    stmt = c.createStatement();
 
-   ResultSet rs = stmt.executeQuery( "SELECT * FROM Movie WHERE type = '"+ type +"'");
+   ResultSet rs = stmt.executeQuery( "SELECT N.CustId, N.FirstName, N.LastName, N.Rating, C.NumOrders "+
+			"FROM CountOrders C, Name N " +
+		   "WHERE N.CustId = C.CustId AND C.NumOrders >= (SELECT MAX(D.NumOrders) FROM CountOrders D)");
    int count = 0;
    
    while ( rs.next() ) {
 	   count++;
-      String  id = rs.getString("id");
-      String  movieid = rs.getString("name");
-      String  custRepId = rs.getString("type");
+	   String  custid = rs.getString("custid");
+      String  firstname = rs.getString("firstname");
+      String  lastname = rs.getString("lastname");
+      String  rating = rs.getString("rating");
+      String  numorders = rs.getString("numorders");
       %>
       
       	<tr bgcolor="#8FBC8F">
-			<td><%=rs.getString("id")%></td>
-			<td><%=rs.getString("name")%></td>
-			<td><%=rs.getString("type")%></td>
-
+      		<td><%=rs.getString("custid")%></td>
+			<td><%=rs.getString("firstname")%></td>
+			<td><%=rs.getString("lastname")%></td>
+			<td><%=rs.getString("rating")%></td>
+			<td><%=rs.getString("numorders")%></td>
 		</tr>
 
       <%

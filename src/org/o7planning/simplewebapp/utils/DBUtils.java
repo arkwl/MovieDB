@@ -95,6 +95,17 @@ public class DBUtils {
       //put some error handling to see if it has worked
   }
   
+  public static void queryOneAMan(Connection conn, String id, String name, String type,
+		  String rating, String distrfee, String numcopies) throws SQLException {
+
+	  //testing to make sure it exists
+      Statement stmt = conn.createStatement();
+      String sql_1 = "INSERT INTO Movie VALUES ('" + id + "', '" + name + "', '" + type 
+    		  + "', '" + rating + "', '" + distrfee + "', '" + numcopies + "')";
+      stmt.executeUpdate(sql_1);
+      
+  }
+  
   public static void queryTwoAEmp(Connection conn, String ssn, String firstName, String lastName,
 		  String address, String zipcode, String telephone, String cc, String rating, String email) throws SQLException {
 
@@ -121,6 +132,41 @@ public class DBUtils {
       Statement stmt_2 = conn.createStatement();
       String sql_2 = "INSERT INTO Employee VALUES ('" + customerID + "', '" + ssn  + "', '" + startDate + "', '" + hourlyRate + "')";
       stmt_2.executeUpdate(sql_2);
+      
+      //put some error handling to see if it has worked
+  }
+  
+  public static void queryOneBMan(Connection conn, String id, String name, String type,
+		  String rating, String distrfee, String numcopies)  throws SQLException {
+	  
+	  
+	  // STRICTLY UPDATE ONE AT A TIME
+	  String set_movie = "SET ";
+	  
+	  if(name.length() > 0){
+		  set_movie += ("Name = '" + name+"'");
+	  } 
+	  if (type.length() > 0) {
+		  set_movie += ("Type = '" + type+"'");
+	  } 
+	  if (rating.length() > 0) {
+		  set_movie += ("Rating = '" + rating+"'");
+	  } 
+	  if (distrfee.length() > 0) {
+		  set_movie += ("distrfee = '" + distrfee+"'");
+	  } 
+	  if (numcopies.length() > 0) {
+		  set_movie += ("numcopies = '" + numcopies+"'");
+	  } 
+	  
+	  if (!set_movie.equals("SET ")){
+		  Statement stmt = conn.createStatement();
+	      String sql_1 = "UPDATE Movie " + set_movie + " WHERE ID = '"+ id +"'";
+	      stmt.executeUpdate(sql_1);
+	  } else {
+		  throw new SQLException();
+	  }
+	  
       
       //put some error handling to see if it has worked
   }
@@ -235,6 +281,15 @@ public class DBUtils {
       String sql_1 = "DELETE FROM Person WHERE SSN = '" + ssn + "'";
       stmt.executeUpdate(sql_1);
       
+      //put some error handling to see if it has worked
+  }
+  
+  public static void queryOneCMan(Connection conn, String id) throws SQLException {
+      
+      Statement stmt_2 = conn.createStatement();
+      String sql_2 = "DELETE FROM Movie WHERE ID = '" + id + "'";
+      stmt_2.executeUpdate(sql_2);
+            
       //put some error handling to see if it has worked
   }
   
