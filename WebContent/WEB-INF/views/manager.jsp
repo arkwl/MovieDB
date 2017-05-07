@@ -51,7 +51,10 @@
 	</form>
 </div>
 
+
 <div style=" width: 700px; display:flex;">
 	<div style="width: 70%;">Produce a list of most actively rented movies</div>
-	<button>-></button>
+	<form action="${pageContext.request.contextPath}/transaction" method="POST">
+		<button type="submit" name="button" value="man_8">-></button>
+	</form>
 </div>

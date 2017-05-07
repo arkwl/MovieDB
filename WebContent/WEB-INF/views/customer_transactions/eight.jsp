@@ -9,17 +9,17 @@
 </head>
 <body>
 	<div class="center">
-		<h3>Obtain a sales report for a particular month:</h3>
+		<h3>Add to queue:</h3>
 		<p style="color: red;">${errorString}</p>
 		<p style="color: white;">${successString}</p>
 		<form action="${pageContext.request.contextPath}/insert" method="POST">
 			<table border="0">
           <tr>
-             <td>Month #:</td>
-             <td><input type="text" name="month" /> </td>
+             <td>Movie ID:</td>
+             <td><input type="text" name="id" /> </td>
           </tr>
           <tr style="display: none;">
-          	<td><input type="text" name="queryType" value="man3" /> </td>
+          	<td><input type="text" name="queryType" value="cus8" /> </td>
           </tr>
           <tr>
              <td colspan ="2">

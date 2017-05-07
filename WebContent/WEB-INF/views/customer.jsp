@@ -48,10 +48,9 @@
 	</form>
 </div>
 <div style=" width: 700px; display:flex;">
-	<div style="width: 80%;">Rate the movies they have rented</div>
+	<div style="width: 80%;">Add movie to queue</div>
 	<form action="${pageContext.request.contextPath}/transaction" method="POST">
 		<input style="display: none;" type="text" name="userID" value="${user.id}"></input>
 		<button type="submit" name="button" value="cus_8">-></button>
 	</form>
 </div>
-

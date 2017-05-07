@@ -79,7 +79,7 @@ public class TransactionServlet extends HttpServlet {
         } else if ("man_7".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/seven.jsp").forward(request, response);
         } else if ("man_8".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/eight.jsp").forward(request, response);
         } else if ("cus_1".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/one.jsp").forward(request, response);
         } else if ("cus_2".equals(button)) {
@@ -95,7 +95,7 @@ public class TransactionServlet extends HttpServlet {
         } else if ("cus_7".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/seven.jsp").forward(request, response);
         } else if ("cus_8".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/customer_transactions/eight.jsp").forward(request, response);
         } else {
             // ???
         }

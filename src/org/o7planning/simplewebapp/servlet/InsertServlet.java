@@ -334,12 +334,14 @@ public class InsertServlet extends HttpServlet {
         	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveBResult.jsp").forward(request, response);
         } else if ("man5c".equals(button)) {
         	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/fiveCResult.jsp").forward(request, response);
-        } else if ("man6".equals(button)) {
+        } else if ("man3".equals(button)) {
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/threeResult.jsp").forward(request, response);
+        } else if ("man8".equals(button)) {
             //myClass.method3();
         } else if ("emp4".equals(button)) {
             //myClass.method3();
         } else if ("man8".equals(button)) {
-            //myClass.method3();
+        	request.getRequestDispatcher("/WEB-INF/views/manager_transactions/eight.jsp").forward(request, response);
         } else if ("cus1".equals(button)) {
             //myClass.method3();
         } else if ("cus2".equals(button)) {
@@ -355,7 +357,19 @@ public class InsertServlet extends HttpServlet {
         } else if ("cus7".equals(button)) {
             //myClass.method3();
         } else if ("cus8".equals(button)) {
-            //myClass.method3();
+        	String id = request.getParameter("id");
+			
+			try {
+				DBUtils.queue(conn, id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("successString", "Success!");
+			RequestDispatcher dispatcher //
+            = this.getServletContext().getRequestDispatcher("/WEB-INF/views/customer_transactions/eight.jsp");
+ 
+            dispatcher.forward(request, response);
         } else {
             // ???
         }

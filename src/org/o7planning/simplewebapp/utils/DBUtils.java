@@ -106,6 +106,15 @@ public class DBUtils {
       
   }
   
+  public static void queue(Connection conn, String id) throws SQLException {
+
+	  //testing to make sure it exists
+      Statement stmt = conn.createStatement();
+      String sql_1 = "INSERT INTO MovieQ VALUES (3, "+id+");";
+      stmt.executeUpdate(sql_1);
+      
+  }
+  
   public static void queryTwoAEmp(Connection conn, String ssn, String firstName, String lastName,
 		  String address, String zipcode, String telephone, String cc, String rating, String email) throws SQLException {
 

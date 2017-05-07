@@ -14,7 +14,8 @@
 	<%@page import="java.sql.Connection"%>
 
 	<%
-	String userId = request.getParameter("userID");
+	//String userId = request.getParameter("customerID");
+	String month = request.getParameter("month");
 Connection c = null;
 Statement stmt = null;
 try {
@@ -26,42 +27,39 @@ try {
    System.out.println("Opened database successfully");
 %>
 <div class="center">
-	<h2 align="center">History/Past Orders</h2>
+	<h2 align="center">Obtain a sales report for a particular month.</h2>
 	<table align="center" cellpadding="4" cellspacing="4">
 		<tr>
 
 		</tr>
 		<tr bgcolor="#008000">
 			<td><b>Order ID</b></td>
-			<td><b>Movie ID</b></td>
-			<td><b>Customer ID</b></td>
-			<td><b>Date/Time </b></td>
-			<td><b>Return Date </b></td>
+			<td><b>ID</b></td>
+			<td><b>Movie Type</b></td>
+			<td><b>Customer I</b></td>
 		</tr>
 
 <%   
    stmt = c.createStatement();
 
-   ResultSet rs = stmt.executeQuery( "SELECT O.Id, R.MovieId, R.CustRepId, O.DateTime, O.ReturnDate "+
-		   "FROM Name N, Rental R, Orders O "+
-		   "WHERE N.AcctId = R.AccountId AND R.OrderId  = O.Id AND N.CustId = '"+userId+"'");
+   ResultSet rs = stmt.executeQuery( "SELECT R.OrderId, M.Id, M.Type, N.CustId "+
+		   "FROM Movie M, Rental R, Name N "+
+		   "WHERE N.AcctId = R.AccountId AND M.Id = R.MovieId AND N.LastName = '"+ month +"'");
    int count = 0;
    
    while ( rs.next() ) {
 	   count++;
+	   String  orderid = rs.getString("orderid");
       String  id = rs.getString("id");
-      String  movieid = rs.getString("movieid");
-      String  custRepId = rs.getString("CustRepId");
-      String  dateTime = rs.getString("DateTime");
-      String  returnDate = rs.getString("ReturnDate");
+      String  type = rs.getString("type");
+      String  customer = rs.getString("custid");
       %>
       
       	<tr bgcolor="#8FBC8F">
+      		<td><%=rs.getString("orderid")%></td>
 			<td><%=rs.getString("id")%></td>
-			<td><%=rs.getString("movieid")%></td>
-			<td><%=rs.getString("CustRepId")%></td>
-			<td><%=rs.getString("DateTime")%></td>
-			<td><%=rs.getString("ReturnDate")%></td>
+			<td><%=rs.getString("type")%></td>
+			<td><%=rs.getString("custid")%></td>
 
 		</tr>
 

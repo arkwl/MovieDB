@@ -14,7 +14,7 @@
 	<%@page import="java.sql.Connection"%>
 
 	<%
-	String userId = request.getParameter("userID");
+	//String userId = request.getParameter("customerID");
 Connection c = null;
 Statement stmt = null;
 try {
@@ -26,42 +26,39 @@ try {
    System.out.println("Opened database successfully");
 %>
 <div class="center">
-	<h2 align="center">History/Past Orders</h2>
+	<h2 align="center">A list of most actively rented movies</h2>
 	<table align="center" cellpadding="4" cellspacing="4">
 		<tr>
 
 		</tr>
 		<tr bgcolor="#008000">
-			<td><b>Order ID</b></td>
 			<td><b>Movie ID</b></td>
-			<td><b>Customer ID</b></td>
-			<td><b>Date/Time </b></td>
-			<td><b>Return Date </b></td>
+			<td><b>Movie Name</b></td>
+			<td><b>Movie Type</b></td>
+			<td><b>Movie Type</b></td>
 		</tr>
 
 <%   
    stmt = c.createStatement();
 
-   ResultSet rs = stmt.executeQuery( "SELECT O.Id, R.MovieId, R.CustRepId, O.DateTime, O.ReturnDate "+
-		   "FROM Name N, Rental R, Orders O "+
-		   "WHERE N.AcctId = R.AccountId AND R.OrderId  = O.Id AND N.CustId = '"+userId+"'");
+   ResultSet rs = stmt.executeQuery( "SELECT M.ID, M.Name, M.RATING, O.NumOrders "+
+		   "FROM MovieOrder O, Movie M "+
+		   "WHERE O.MovieId = M.ID AND O.NumOrders >= (SELECT MAX(R.NumOrders) FROM MovieOrder R)");
    int count = 0;
    
    while ( rs.next() ) {
 	   count++;
       String  id = rs.getString("id");
-      String  movieid = rs.getString("movieid");
-      String  custRepId = rs.getString("CustRepId");
-      String  dateTime = rs.getString("DateTime");
-      String  returnDate = rs.getString("ReturnDate");
+      String  name = rs.getString("name");
+      String  rating = rs.getString("rating");
+      String  numorders = rs.getString("numorders");
       %>
       
       	<tr bgcolor="#8FBC8F">
 			<td><%=rs.getString("id")%></td>
-			<td><%=rs.getString("movieid")%></td>
-			<td><%=rs.getString("CustRepId")%></td>
-			<td><%=rs.getString("DateTime")%></td>
-			<td><%=rs.getString("ReturnDate")%></td>
+			<td><%=rs.getString("name")%></td>
+			<td><%=rs.getString("rating")%></td>
+			<td><%=rs.getString("numorders")%></td>
 
 		</tr>
 
